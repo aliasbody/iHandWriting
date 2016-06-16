@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		350DB47610DA2EDEAE662838 /* Pods_iHandwriting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1A7F6455AAA1FE33051F89 /* Pods_iHandwriting.framework */; };
 		E1360A551D12363800696C2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E150AD231D115D3D00663FFF /* LaunchScreen.storyboard */; };
+		E13F62291D134F48000E5193 /* Pods_iHandwriting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1A7F6455AAA1FE33051F89 /* Pods_iHandwriting.framework */; };
 		E150AD1B1D115D3D00663FFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150AD1A1D115D3D00663FFF /* AppDelegate.swift */; };
 		E150AD2F1D11603A00663FFF /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150AD2E1D11603A00663FFF /* GlobalVariables.swift */; };
 		E150AD311D1162AC00663FFF /* GlobalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150AD301D1162AC00663FFF /* GlobalExtensions.swift */; };
@@ -39,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				350DB47610DA2EDEAE662838 /* Pods_iHandwriting.framework in Frameworks */,
+				E13F62291D134F48000E5193 /* Pods_iHandwriting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

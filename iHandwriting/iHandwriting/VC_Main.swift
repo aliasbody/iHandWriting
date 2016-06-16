@@ -80,11 +80,14 @@ class VC_Main: UIViewController {
     /*
      Called before the view appears (when it is about to appear)
      
-     Defines the layer design (border Color and With) of the User's Text View
+     Defines the layer design (border Color, Width and Radius) of the User's Text View
+     based on the Catalog's TextField
      **/
     override func viewWillAppear(animated: Bool) {
-        self.txtViewText.layer.borderColor = UIColor.lightGrayColor().CGColor
-        self.txtViewText.layer.borderWidth = 1.0
+        self.txtViewText.layer.borderColor   = UIColor.grayColor().colorWithAlphaComponent(0.5).CGColor
+        self.txtViewText.layer.borderWidth   = 0.5
+        self.txtViewText.layer.cornerRadius  = 5
+        self.txtViewText.layer.masksToBounds = true
     }
     
     /*

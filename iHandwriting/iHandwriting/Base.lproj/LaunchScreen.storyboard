@@ -18,17 +18,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="0mD-bb-n0G">
-                                <rect key="frame" x="175" y="175" width="250" height="250"/>
+                                <rect key="frame" x="175" y="223" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="AI0-sv-hai"/>
                                     <constraint firstAttribute="width" constant="250" id="eEz-3z-Tcn"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iHandwriting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lG-nE-3Py">
+                                <rect key="frame" x="175" y="165" width="250" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0mD-bb-n0G" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="C62-Nj-8nd"/>
-                            <constraint firstItem="0mD-bb-n0G" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="E9X-Kt-iIK"/>
+                            <constraint firstItem="0mD-bb-n0G" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="48" id="E9X-Kt-iIK"/>
+                            <constraint firstItem="0mD-bb-n0G" firstAttribute="trailing" secondItem="1lG-nE-3Py" secondAttribute="trailing" id="YgK-yS-G4g"/>
+                            <constraint firstItem="0mD-bb-n0G" firstAttribute="leading" secondItem="1lG-nE-3Py" secondAttribute="leading" id="bMg-we-OHN"/>
+                            <constraint firstItem="0mD-bb-n0G" firstAttribute="top" secondItem="1lG-nE-3Py" secondAttribute="bottom" constant="10" id="xdi-EH-szN"/>
                         </constraints>
                     </view>
                 </viewController>
