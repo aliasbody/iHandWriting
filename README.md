@@ -27,7 +27,7 @@ The result is a simple "dual view", which is devised on two sections:
 <img src="./images/screenshots/second.jpg" width="300">
 
 ####The final result is something among those lines
-![MacDown Screenshot](./images/gif/iHandWriting.gif)
+<!--![MacDown Screenshot](./images/gif/iHandWriting.gif)-->
 
 ## Frameworks
 **For iHandWriting** two frameworks have been used, both installed/managed by [CocoaPods](https://cocoapods.org/):
@@ -43,6 +43,20 @@ The usage of both frameworks could have been avoided, same with any frameworks, 
 * Less time spent on really usefull and awesome features
 
 So yes, both frameworks could have been avoided, but the final cost would be in the final user experience. And this is why I decided to include them. Thanks to that the code clean and the application is simple to use and to handle.
+
+## Why SWIFT over Objective-C?
+**The SWIFT language** was used, not only because it's easier to read then Objective-C but also because it's:
+
+* Easier to maintain
+* Unified with Memory Management
+* Requires less code
+* Faster (acording to benchmarks)
+* Supports dynamic libraries
+* The most developed language by Apple
+* Still improving
+* Coming to other plateforms (like Android)
+* Supports Gnu/Linux natively
+* Open Source
 
 ## How to use
 1. **Select a HandWriting** (Optional - Default 'first on catalog')
