@@ -16,6 +16,7 @@ class VC_Main: UIViewController {
     
     // Stores the CatalogList to be used by Catalog the PickerView
     private var itemCatalogList = NSArray()
+    private var itemCatalogImage = [UIImage]()
 
     // Stores all the Parameters which will be sent to the API
     private var arrStrParams = [
@@ -255,6 +256,31 @@ class VC_Main: UIViewController {
                             self.dismissViewControllerAnimated(true, completion: {
                                 if let arrCatalog = response.result.value as? NSArray {
                                     self.itemCatalogList = arrCatalog.orderByAlpha("title", ascending: true)
+                                    
+                                    for (index, element) in arrCatalog.orderByAlpha("title", ascending: true).enumerate() {
+                                        // Alocate the space with an empty UIImage
+                                        self.itemCatalogImage.insert(UIImage(), atIndex: index)
+                                        
+                                        // Custom Params
+                                        let catalogImageParams = [
+                                            "handwriting_id"        : "\(element["id"] as! String)",
+                                            "text"                  : "\(element["title"] as! String)",
+                                            "handwriting_size"      : "40px",
+                                            "width"                 : "400px",
+                                            "height"                : "auto"]
+                                        
+                                        // Download the final image into that same space
+                                        Alamofire.request(.GET, ihand_urlAPI, parameters: catalogImageParams)
+                                            .authenticate(user: ihand_key, password: ihand_secret)
+                                            .validate()
+                                            .response { (request, response, data, error) in
+                                                if let image = UIImage(data: data!, scale: 1) {
+                                                    self.itemCatalogImage[index] = image
+                                                }
+                                        }
+                                    }
+                                    
+                                    // TODO
                                     self.pickerCatalog.reloadAllComponents()
                                 }
                             })
@@ -269,7 +295,7 @@ class VC_Main: UIViewController {
     }
     
     /**
-     UIViewController function overrided in order to handle the segue to the VC_ImageView by defining the received 
+     UIViewController function overrided in order to handle the segue to the VC_ImageView by defining the received
      image to the right variable (inside that same ViewController Class) before going ahead with the segue.
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -313,30 +339,39 @@ extension VC_Main: UIPickerViewDelegate, UIPickerViewDataSource {
      If the selected pickerView is the Catalog then returns, per row, the title of same Array index of Catalogs.
      If the selected pickerView is the Presset then returns, per row, the title of same Array index of Pressets.
      */
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
         if (pickerView == self.pickerCatalog) {
-            if (row == 0) {
+            if (self.itemCatalogImage[row].CGImage == nil) {
+                let pickerLabel = UILabel()
+                pickerLabel.textAlignment = NSTextAlignment.Center
+                
                 if let strTitle = self.itemCatalogList[row]["title"] as? String {
-                    self.txtCatalog.text = strTitle
+                    pickerLabel.text = strTitle
                 }
                 
-                if let strID = self.itemCatalogList[row]["id"] as? String {
-                    self.arrStrParams["handwriting_id"] = strID
-                }
+                return pickerLabel
+            } else {
+                let pickerImage = UIImageView()
+                pickerImage.image = self.itemCatalogImage[row]
+                
+                return pickerImage
             }
             
-            return self.itemCatalogList[row]["title"] as? String
         } else if (pickerView == self.pickerPresset) {
+            let pickerLabel = UILabel()
+            pickerLabel.textAlignment = NSTextAlignment.Center
+
             if (row == 0) {
-                self.txtPresset.text = ""
-                return ""
-            } else if (row == 1) {
-                self.txtPresset.text = Array(self.arrStrPresset.keys)[row-1]
+                self.txtPresset.text    = ""
+                pickerLabel.text        = ""
+            } else if (row >= 1) {
+                self.txtPresset.text    = Array(self.arrStrPresset.keys)[row-1]
+                pickerLabel.text        = Array(self.arrStrPresset.keys)[row-1]
             }
             
-            return Array(self.arrStrPresset.keys)[row-1]
+            return pickerLabel
         } else {
-            return ""
+            return UIView()
         }
     }
     
@@ -348,6 +383,7 @@ extension VC_Main: UIPickerViewDelegate, UIPickerViewDataSource {
      */
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView == self.pickerCatalog) {
+            
             if let strTitle = self.itemCatalogList[row]["title"] as? String {
                 self.txtCatalog.text = strTitle
             }
@@ -355,6 +391,9 @@ extension VC_Main: UIPickerViewDelegate, UIPickerViewDataSource {
             if let strID = self.itemCatalogList[row]["id"] as? String {
                 self.arrStrParams["handwriting_id"] = strID
             }
+            
+            // Reload the selected component (in order to make it show the image (if any)
+            pickerView.reloadComponent(component)
         } else if (pickerView == self.pickerPresset) {
             self.txtPresset.text    = (row > 0 ? Array(self.arrStrPresset.keys)[row-1]                      : "")
             self.txtViewText.text   = (row > 0 ? self.arrStrPresset[Array(self.arrStrPresset.keys)[row-1]]  : "")

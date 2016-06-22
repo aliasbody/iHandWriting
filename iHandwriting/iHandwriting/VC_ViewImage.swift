@@ -36,6 +36,8 @@ class VC_ViewImage: UIViewController {
         self.scrollView.zoomScale          = 1
         self.scrollView.maximumZoomScale   = 5.0
         self.scrollView.minimumZoomScale   = 1
+        
+        self.scrollView.contentSize = self.imageView.image!.size
     }
     
     override func didReceiveMemoryWarning() {
