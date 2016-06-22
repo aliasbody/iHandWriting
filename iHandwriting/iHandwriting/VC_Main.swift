@@ -280,7 +280,7 @@ class VC_Main: UIViewController {
                                         }
                                     }
                                     
-                                    // TODO
+                                    // Reload All Components
                                     self.pickerCatalog.reloadAllComponents()
                                 }
                             })
@@ -343,7 +343,6 @@ extension VC_Main: UIPickerViewDelegate, UIPickerViewDataSource {
         if (pickerView == self.pickerCatalog) {
             if (self.itemCatalogImage[row].CGImage == nil) {
                 let pickerLabel = UILabel()
-                pickerLabel.textAlignment = NSTextAlignment.Center
                 
                 if let strTitle = self.itemCatalogList[row]["title"] as? String {
                     pickerLabel.text = strTitle
@@ -359,7 +358,6 @@ extension VC_Main: UIPickerViewDelegate, UIPickerViewDataSource {
             
         } else if (pickerView == self.pickerPresset) {
             let pickerLabel = UILabel()
-            pickerLabel.textAlignment = NSTextAlignment.Center
 
             if (row == 0) {
                 self.txtPresset.text    = ""
@@ -393,7 +391,9 @@ extension VC_Main: UIPickerViewDelegate, UIPickerViewDataSource {
             }
             
             // Reload the selected component (in order to make it show the image (if any)
-            pickerView.reloadComponent(component)
+            if ((pickerView.viewForRow(row, forComponent: component) as? UIImageView) != nil) {
+                pickerView.reloadComponent(component)
+            }
         } else if (pickerView == self.pickerPresset) {
             self.txtPresset.text    = (row > 0 ? Array(self.arrStrPresset.keys)[row-1]                      : "")
             self.txtViewText.text   = (row > 0 ? self.arrStrPresset[Array(self.arrStrPresset.keys)[row-1]]  : "")
