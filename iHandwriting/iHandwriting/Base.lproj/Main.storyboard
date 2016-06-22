@@ -450,7 +450,7 @@
                                     <constraint firstAttribute="trailing" secondItem="ObE-N8-rtX" secondAttribute="trailing" id="1bX-GW-Bqu"/>
                                     <constraint firstItem="ObE-N8-rtX" firstAttribute="top" secondItem="by5-ee-Jjz" secondAttribute="top" id="Amb-VL-MYG"/>
                                     <constraint firstItem="ObE-N8-rtX" firstAttribute="centerY" secondItem="by5-ee-Jjz" secondAttribute="centerY" id="IZ3-CZ-67b"/>
-                                    <constraint firstAttribute="bottom" secondItem="ObE-N8-rtX" secondAttribute="bottom" id="VSB-2N-HhG"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ObE-N8-rtX" secondAttribute="bottom" id="VSB-2N-HhG"/>
                                     <constraint firstItem="ObE-N8-rtX" firstAttribute="centerX" secondItem="by5-ee-Jjz" secondAttribute="centerX" id="Y7s-dp-yQf"/>
                                     <constraint firstItem="ObE-N8-rtX" firstAttribute="leading" secondItem="by5-ee-Jjz" secondAttribute="leading" id="axt-Zx-2UF"/>
                                 </constraints>
@@ -467,7 +467,8 @@
                                         <exclude reference="axt-Zx-2UF"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="20" y="64" width="360" height="736"/>
                                     <mask key="subviews">
                                         <include reference="ObE-N8-rtX"/>
                                     </mask>

@@ -348,20 +348,16 @@ extension VC_Main: UIPickerViewDelegate, UIPickerViewDataSource {
      */
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView == self.pickerCatalog) {
-            if (row == 0) {
-                if let strTitle = self.itemCatalogList[row]["title"] as? String {
-                    self.txtCatalog.text = strTitle
-                }
+            if let strTitle = self.itemCatalogList[row]["title"] as? String {
+                self.txtCatalog.text = strTitle
+            }
                 
-                if let strID = self.itemCatalogList[row]["id"] as? String {
-                    self.arrStrParams["handwriting_id"] = strID
-                }
+            if let strID = self.itemCatalogList[row]["id"] as? String {
+                self.arrStrParams["handwriting_id"] = strID
             }
         } else if (pickerView == self.pickerPresset) {
-            if (row > 0) {
-                self.txtPresset.text = Array(self.arrStrPresset.keys)[row-1]
-                self.txtViewText.text = self.arrStrPresset[Array(self.arrStrPresset.keys)[row-1]]
-            }
+            self.txtPresset.text    = (row > 0 ? Array(self.arrStrPresset.keys)[row-1]                      : "")
+            self.txtViewText.text   = (row > 0 ? self.arrStrPresset[Array(self.arrStrPresset.keys)[row-1]]  : "")
         }
     }
 }

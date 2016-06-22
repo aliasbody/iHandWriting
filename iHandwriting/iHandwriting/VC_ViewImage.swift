@@ -76,6 +76,7 @@ extension VC_ViewImage : UIScrollViewDelegate {
             let shiftHeight = scrollView.frame.height/2.0 - scrollView.contentSize.height/2.0
             scrollView.contentInset.top = shiftHeight
         }
+
         if self.imageView.frame.width <= scrollView.frame.width {
             let shiftWidth = scrollView.frame.width/2.0 - scrollView.contentSize.width/2.0
             scrollView.contentInset.left = shiftWidth
